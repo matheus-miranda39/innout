@@ -3,10 +3,10 @@
 require_once(MODEL_PATH . '/Model.php');
 
 class User extends Model {
-    protected static $tableName = 'Users';
-    protected static $columns = [
+    protected static $tableName = 'users'; //nome da tabela
+    protected static $columns = [ //colunas do SQL
         'id',
-        'namne',
+        'name',
         'password',
         'email',
         'start_date',
