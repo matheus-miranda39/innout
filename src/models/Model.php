@@ -25,4 +25,9 @@ class Model {
     public function __set($key, $value){
         $this->values[$key] = $value;
     }
+
+    public function getSelect(){
+        $sql = 'SELECT * FROM ' . static::$tableName; //já pega o nome da tabela que estiver referenciando na herança
+        return $sql;
+    }
 }
