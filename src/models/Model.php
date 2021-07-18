@@ -26,11 +26,29 @@ class Model {
         $this->values[$key] = $value;
     }
 
-    public static function getSelect($filters = [], $columns = "*"){
+    //Serve para pegar TODOS os dados do banco com os filtros determinados
+    public static function get($filters = [], $columns = '*'){ 
+        $objects = [];
+        $result = static::getResultSetFromSelect($filters, $columns);
+        if($result){
+            $class = get_called_class(); //Mostra a classe que chamou esse metodo -> get(filters, colums) 
+            while($row = $result->fetch_assoc()){
+                array_push($objects, new $class($row));
+            }
+        }
+        return $objects;
+    }
+
+    public static function getResultSetFromSelect($filters = [], $columns = "*"){
         $sql = "SELECT ${columns} FROM "  
         . static::$tableName //já pega o nome da tabela que estiver referenciado na herança
         . static::getFilters($filters);
-        return $sql;
+        $result = Database::getResultFromQuery($sql);
+        if($result->num_rows === 0){
+            return null;
+        } else {
+            return $result;
+        }
     }
 
     private static function getFilters($filters){
