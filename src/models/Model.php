@@ -1,5 +1,4 @@
 <?php
-
 class Model {
     protected static $tableName = '';
     protected static $columns = [];
@@ -37,6 +36,13 @@ class Model {
             }
         }
         return $objects;
+    }
+    
+    //Serve para pegar APENAS UM usuario do banco com os filtros determinados
+    public static function getOne($filters = [], $columns = '*'){ 
+        $class = get_called_class();
+        $result = static::getResultSetFromSelect($filters, $columns);
+        return $result ? new $class($result->fetch_assoc()) : null;
     }
 
     public static function getResultSetFromSelect($filters = [], $columns = "*"){
