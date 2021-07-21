@@ -1,6 +1,6 @@
 <?php
 class User extends Model {
-    protected static $tableName = 'users'; //nome da tabela
+    protected static $tableName = 'users';
     protected static $columns = [ //colunas do SQL
         'id',
         'name',

@@ -68,6 +68,7 @@ class Model {
         return $sql;
     }
 
+    // asvezes é necessário passar por uma rormatação antes de ir para o SQL
     private static function getFormated($value){
         if(is_null($value)){
             return "null";
