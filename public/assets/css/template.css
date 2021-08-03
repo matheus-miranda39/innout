@@ -2,7 +2,7 @@ body {
     display: grid;
     grid-template-columns: 250px 1fr; 
     grid-template-rows: 64px 1fr 64px;
-    grid-template-areas: 
+    grid-template-areas: /** relaciona com os nomes dados no atributo 'grid-area' */
     "header header"
     "sidebar content"
     "sidebar footer";
@@ -12,7 +12,7 @@ body {
 }
 
 header.header {
-    grid-area: header;
+    grid-area: header; /** representa o nome dado a essa area PS: ter o mesmo nome da tag é mera coincidência */
     display: flex;
     background-color: #1976d2;
     align-items: center; /** centraliza conforme o eixo-Y (linha)*/
@@ -102,12 +102,43 @@ body.hide-sidebar {
         "footer";
 }
 
-body.hide-sidebar aside.sidebar{
-    display: none;
+aside.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: sidebar; /** caso tire essa linha o menu lateral não irá até o final da página */
+    box-shadow: -5px 0px 25px 1px rgba(0, 0, 0, .04);
+    background-color: white;
 }
 
-aside.sidebar {
-    grid-area: sidebar;
+aside.sidebar .menu{
+    width: 100%;
+    flex-grow: 1;
+}
+
+aside.sidebar .menu ul.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside.sidebar .menu li.nav-item {
+    padding: 10px 0px 10px 25px;
+    margin: 0;
+}
+
+aside.sidebar .menu li.nav-item a{
+    font-size: 1.2rem;
+    color: #555; /** Se tirar essa linha o texto fica azul(eu preferia azul :/ ) */
+    text-decoration: none;
+}
+
+aside.sidebar .menu li.nav-item:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+body.hide-sidebar aside.sidebar{
+    display: none;
 }
 
 main.content {
@@ -115,5 +146,12 @@ main.content {
 }
 
 footer.footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10px;
+    font-size: 1.2rem;
+    background-color: #222;
+    color: #fff;
     grid-area: footer;
 }
