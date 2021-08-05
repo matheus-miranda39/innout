@@ -44,6 +44,7 @@ header.header .spacer {
 
 header.header .dropdown{
     position: relative;
+    height: 100%;
 }
 
 header.header .dropdown-button {
@@ -73,7 +74,7 @@ header.header .dropdown:hover .dropdown-content {
 header.header .dropdown-content ul{
     list-style: none;
     padding-left: 0;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 header.header .dropdown-content a{
@@ -91,6 +92,12 @@ header.header .dropdown-content a:hover{
 
 header.header .dropdown:hover{
     background-color: rgba(0, 0, 0, .1);
+}
+
+header.header .avatar {
+    height: 75%;
+    border-radius: 50%;
+    margin-left: 10px;
 }
 
 /** Ao tirar essa classe do body ela esconderá o menu lateral */
