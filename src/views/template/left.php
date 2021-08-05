@@ -34,7 +34,7 @@
                 <span class="main text-primary">
                     04:23
                 </span>
-                <span class="label text-muted">
+                <span class="label text-muted"> <!-- text-muted deixa o texto cinza -->
                     Horas Trabalhadas
                 </span>
             </div>
