@@ -21,7 +21,8 @@ CREATE TABLE working_hours (
     worked_time INT,
 
     FOREIGN KEY (user_id) REFERENCES users(id),
-    CONSTRAINT cons_user_day UNIQUE (user_id, work_date)
+    CONSTRAINT cons_user_day UNIQUE (user_id, work_date) 
+    -- serve para que a COMBINAÇÃO entre user_id e work_date seja unico
 );
 
 -- Essa senha criptografada corresponde ao valor "a"

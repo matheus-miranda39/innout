@@ -57,19 +57,31 @@ class Model {
         }
     }
 
+    //Cadastra um usuario
+    public function save(){
+        $sql = "INSERT INTO" . static::$tableName . " ("
+            . implode(",", static::$columns) . ") VALUES (";
+        foreach(static::$columns as $col) {
+            $sql .= static::getFormatedValue($this->$col) . ",";
+        }
+        $sql[strlen($sql) - 1] = ')'; //serve para garantir que o ultimo caractere do sql não seja uma virgula
+        $id = Database::executeSQL($sql); //executa o $sql e retorna o id do usuario cadastrado
+        $this->id = $id;
+    }
+
     private static function getFilters($filters){
         $sql = '';
         if(count($filters) > 0){
-            $sql .= " WHERE 1 = 1"; //serve para garantir que depois do where todas os parametros tenham 'AND' antes
+            $sql .= " WHERE 1 = 1"; //serve para que o proximo comando não seja um 'AND'
             foreach($filters as $column => $value) {
-                $sql .= " AND ${column} = " . static::getFormated($value);
+                $sql .= " AND ${column} = " . static::getFormatedValue($value);
             }
         }
         return $sql;
     }
 
-    // asvezes é necessário passar por uma rormatação antes de ir para o SQL
-    private static function getFormated($value){
+    // as vezes é necessário passar por uma formatação antes de ir para o SQL
+    private static function getFormatedValue($value){
         if(is_null($value)){
             return "null";
         } elseif(gettype($value) === 'string'){
