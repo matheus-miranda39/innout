@@ -59,7 +59,7 @@ class Model {
 
     //Cadastra um usuario
     public function save(){
-        $sql = "INSERT INTO" . static::$tableName . " ("
+        $sql = "INSERT INTO " . static::$tableName . " ("
             . implode(",", static::$columns) . ") VALUES (";
         foreach(static::$columns as $col) {
             $sql .= static::getFormatedValue($this->$col) . ",";
